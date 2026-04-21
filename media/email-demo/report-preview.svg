@@ -1,0 +1,107 @@
+<svg width="740" height="1080" viewBox="0 0 740 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="740" height="1080" fill="#F4F5F7"/>
+  <rect x="60" y="26" width="620" height="70" rx="8" fill="#0C5CAB"/>
+  <text x="74" y="58" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">
+    Reporte Diario de Expedientes Judiciales
+  </text>
+  <text x="74" y="80" fill="#DCEBFF" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="600">
+    Fecha del Reporte: 21/04/2026
+  </text>
+
+  <text x="60" y="132" fill="#1E1E1E" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">
+    Novedades de Expedientes del día
+  </text>
+  <line x1="60" y1="144" x2="680" y2="144" stroke="#0B5BD3" stroke-width="2"/>
+
+  <rect x="60" y="164" width="620" height="222" rx="7" fill="white" stroke="#CBD2DC"/>
+  <text x="74" y="186" fill="#27364A" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">
+    CNT-37403-2016
+  </text>
+  <text x="74" y="208" fill="#1D2D45" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700">
+    VALLE INZA, ISAIAS JESUS C/ SWISS MEDICAL ART S.A. S/ACCIDENTE - LEY ESPECIAL
+  </text>
+  <text x="74" y="227" fill="#566779" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">
+    JUZGADO NACIONAL DE 1RA INSTANCIA DEL TRABAJO NRO. 79
+  </text>
+  <text x="74" y="245" fill="#697A8C" font-family="Arial, Helvetica, sans-serif" font-size="10">
+    Ultimo tipo: FIRMA DESPACHO
+  </text>
+  <text x="74" y="261" fill="#697A8C" font-family="Arial, Helvetica, sans-serif" font-size="10">
+    Ultimo movimiento: EN DESPACHO
+  </text>
+  <text x="74" y="283" fill="#3D4C5E" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">
+    Resumen de Documento
+  </text>
+  <text x="74" y="302" fill="#728091" font-family="Arial, Helvetica, sans-serif" font-size="9.5">
+    <tspan x="74" dy="0">"Resulta": Esta es una novedad del expediente N 37403/2016 caratulado "VALLE INZA,</tspan>
+    <tspan x="74" dy="14">ISAIAS JESUS C/ SWISS MEDICAL ART S.A. S/ACCIDENTE - LEY ESPECIAL". El 20 de abril</tspan>
+    <tspan x="74" dy="14">de 2026, la jueza Cecilia Murray dispuso una resolucion notificando a las partes la</tspan>
+    <tspan x="74" dy="14">produccion de la prueba y la destruccion de la prueba reservada. "Tipo de documento":</tspan>
+    <tspan x="74" dy="14">El primero ya se encuentra en cedulas de notificacion, mientras que el segundo es un</tspan>
+    <tspan x="74" dy="14">despacho de resolucion judicial.</tspan>
+  </text>
+  <rect x="74" y="344" width="63" height="22" rx="3" fill="#0B5BD3"/>
+  <text x="86" y="359" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700">
+    Link al Expediente
+  </text>
+
+  <rect x="60" y="402" width="620" height="216" rx="7" fill="white" stroke="#CBD2DC"/>
+  <text x="74" y="424" fill="#27364A" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">
+    CNT-53266-2016
+  </text>
+  <text x="74" y="446" fill="#1D2D45" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700">
+    ANADON, MABEL C/ SWISS MEDICAL ART S.A. Y OTRO S/ACCIDENTE - LEY ESPECIAL
+  </text>
+  <text x="74" y="465" fill="#566779" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">
+    JUZGADO NACIONAL DE 1RA INSTANCIA DEL TRABAJO NRO. 37
+  </text>
+  <text x="74" y="483" fill="#697A8C" font-family="Arial, Helvetica, sans-serif" font-size="10">
+    Ultimo tipo: MOVIMIENTO
+  </text>
+  <text x="74" y="499" fill="#697A8C" font-family="Arial, Helvetica, sans-serif" font-size="10">
+    Ultimo movimiento: EN DESPACHO
+  </text>
+  <text x="74" y="521" fill="#3D4C5E" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">
+    Resumen de Documento
+  </text>
+  <text x="74" y="540" fill="#728091" font-family="Arial, Helvetica, sans-serif" font-size="9.5">
+    <tspan x="74" dy="0">"Resulta": Este documento presenta una novedad en el expediente N 53266/2016,</tspan>
+    <tspan x="74" dy="14">correspondiente a la causa "Anadon, Mabel c/ Swiss Medical Art S.A. y otro". El</tspan>
+    <tspan x="74" dy="14">tribunal notifico digitalmente la regulacion de honorarios y dejo constancia de dos</tspan>
+    <tspan x="74" dy="14">depositos informados en autos por $1.700.000 y $411.400, a favor de la representacion</tspan>
+    <tspan x="74" dy="14">letrada. Calificacion del expediente: en despacho.</tspan>
+  </text>
+  <rect x="74" y="576" width="63" height="22" rx="3" fill="#0B5BD3"/>
+  <text x="86" y="591" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700">
+    Link al Expediente
+  </text>
+
+  <text x="60" y="684" fill="#1E1E1E" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">
+    Expedientes sin movimientos ( Desde 20 dias atras a 3 meses )
+  </text>
+  <line x1="60" y1="696" x2="680" y2="696" stroke="#0B5BD3" stroke-width="2"/>
+  <text x="60" y="730" fill="#4E5E72" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">
+    Desde 20 dias atras a 3 meses
+  </text>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="750" width="620" height="74" rx="7" fill="white" stroke="#CBD2DC"/>
+    <text x="74" y="778" fill="#0B5BD3" font-size="12" font-weight="700">CNT-19526-2022</text>
+    <text x="74" y="796" fill="#6D7C8D" font-size="10">- 35 dias sin movimiento</text>
+    <text x="74" y="814" fill="#27445E" font-size="10" font-weight="700">GAVILAN SILVA, MARIA AGUSTINA Y OTRO C/ GALENO ART S.A. Y OTRO S/RECURSO LEY 27348</text>
+
+    <rect x="60" y="838" width="620" height="74" rx="7" fill="white" stroke="#CBD2DC"/>
+    <text x="74" y="866" fill="#0B5BD3" font-size="12" font-weight="700">CNT-31850-2022</text>
+    <text x="74" y="884" fill="#6D7C8D" font-size="10">- 35 dias sin movimiento</text>
+    <text x="74" y="902" fill="#27445E" font-size="10" font-weight="700">MULLISACA MULLISACA, SERGIO ARTURO C/ SWISS MEDICAL ART S.A. S/RECURSO LEY 27348</text>
+
+    <rect x="60" y="926" width="620" height="74" rx="7" fill="white" stroke="#CBD2DC"/>
+    <text x="74" y="954" fill="#0B5BD3" font-size="12" font-weight="700">CNT-14853-2019</text>
+    <text x="74" y="972" fill="#6D7C8D" font-size="10">- 35 dias sin movimiento</text>
+    <text x="74" y="990" fill="#27445E" font-size="10" font-weight="700">BARTOLO, CAROLINA C/ BORNENA, LUCILA MARIA Y OTROS S/DESPIDO</text>
+
+    <rect x="60" y="1014" width="620" height="50" rx="7" fill="white" stroke="#CBD2DC"/>
+    <text x="74" y="1042" fill="#0B5BD3" font-size="12" font-weight="700">CIV-66495-2021 / CIV-92177-2015</text>
+    <text x="74" y="1060" fill="#27445E" font-size="10" font-weight="700">Otros expedientes sin movimientos visibles en el reporte.</text>
+  </g>
+</svg>
