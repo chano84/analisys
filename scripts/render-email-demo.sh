@@ -37,13 +37,27 @@ PY
 )"
 
 for state in "${STATES[@]}"; do
-  "$CHROME_BIN" \
+  PROFILE_DIR="$TMP_DIR/chrome-profile-$state"
+  rm -rf "$PROFILE_DIR"
+
+  timeout 20s "$CHROME_BIN" \
     --headless=new \
     --disable-gpu \
     --hide-scrollbars \
+    --no-sandbox \
+    --virtual-time-budget=1500 \
+    --run-all-compositor-stages-before-draw \
+    --user-data-dir="$PROFILE_DIR" \
     --window-size="$SIZE" \
     --screenshot="$TMP_DIR/$state.png" \
-    "${BASE_URL}?state=${state}" >/dev/null 2>&1
+    "${BASE_URL}?state=${state}" >/dev/null 2>&1 || true
+
+  rm -rf "$PROFILE_DIR"
+
+  if [[ ! -s "$TMP_DIR/$state.png" ]]; then
+    echo "No se pudo capturar el estado '$state'." >&2
+    exit 1
+  fi
 done
 
 ffmpeg -y -loop 1 -i "$TMP_DIR/desktop.png" -t 1.4 -vf "fps=30,format=yuv420p" "$TMP_DIR/desktop.mp4" >/dev/null 2>&1

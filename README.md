@@ -15,6 +15,20 @@ Una aplicación RESTful construida con Spring Boot que permite crear informacion
 # Compilar y ejecutar
 ./mvnw spring-boot:run
 
+# Demo visual
+
+Para generar el video de demostracion que simula abrir un mail y visualizar el reporte:
+
+```bash
+./scripts/render-email-demo.sh
+```
+
+El archivo final se guarda en:
+
+```bash
+media/email-demo/output/email-demo.mp4
+```
+
 # Endpoints principales
 
 | Método | Endpoint                      | Descripción                              |
