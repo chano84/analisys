@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo de apertura de mail</title>
+    <style>
+      :root {
+        --wallpaper-top: #11335f;
+        --wallpaper-bottom: #1f6f97;
+        --taskbar: rgba(16, 22, 38, 0.82);
+        --window: rgba(247, 249, 252, 0.98);
+        --line: #d6dde8;
+        --muted: #6c7a89;
+        --text: #1f2937;
+        --accent: #0b5bd3;
+        --mail-unread: #eaf2ff;
+        --card: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 1366px;
+        height: 768px;
+        overflow: hidden;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+      }
+
+      .screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 32%),
+          linear-gradient(180deg, var(--wallpaper-top), var(--wallpaper-bottom));
+      }
+
+      .desktop-header {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 16px;
+        letter-spacing: 0.04em;
+      }
+
+      .desktop-icon {
+        position: absolute;
+        left: 54px;
+        top: 132px;
+        width: 86px;
+        text-align: center;
+        color: white;
+        font-size: 12px;
+      }
+
+      .desktop-icon .icon-art {
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 12px;
+        border-radius: 16px;
+        background: linear-gradient(160deg, #58a5ff, #1b63d9);
+        box-shadow: 0 16px 24px rgba(8, 20, 35, 0.3);
+        position: relative;
+      }
+
+      .desktop-icon .icon-art::before {
+        content: "";
+        position: absolute;
+        inset: 12px 10px 18px 10px;
+        border-radius: 8px;
+        background: white;
+      }
+
+      .desktop-icon .icon-art::after {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: 19px;
+        width: 26px;
+        height: 18px;
+        border: 3px solid #1b63d9;
+        border-top: none;
+        transform: skewY(-12deg);
+      }
+
+      .badge {
+        position: absolute;
+        right: 10px;
+        top: -4px;
+        min-width: 22px;
+        height: 22px;
+        padding: 0 6px;
+        border-radius: 11px;
+        background: #e64848;
+        color: white;
+        font-size: 12px;
+        line-height: 22px;
+        font-weight: 700;
+      }
+
+      .taskbar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--taskbar);
+        backdrop-filter: blur(12px);
+      }
+
+      .taskbar-icons {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .taskbar-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.09);
+        position: relative;
+      }
+
+      .taskbar-icon.mail {
+        background: linear-gradient(160deg, #5aa8ff, #1f62d8);
+      }
+
+      .taskbar-icon.mail::before {
+        content: "";
+        position: absolute;
+        inset: 9px 7px 11px 7px;
+        background: white;
+        border-radius: 7px;
+      }
+
+      .taskbar-icon.mail::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 14px;
+        width: 20px;
+        height: 12px;
+        border: 2px solid #2165d9;
+        border-top: none;
+        transform: skewY(-11deg);
+      }
+
+      .taskbar-clock {
+        position: absolute;
+        right: 26px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 13px;
+        text-align: right;
+        line-height: 1.35;
+      }
+
+      .mail-window {
+        position: absolute;
+        left: 98px;
+        top: 44px;
+        width: 1170px;
+        height: 660px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--window);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: 0 26px 44px rgba(6, 12, 24, 0.28);
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+      }
+
+      .appbar {
+        height: 62px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 0 24px;
+        background: linear-gradient(180deg, #fdfefe, #eef3f8);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .app-logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: linear-gradient(160deg, #56a3ff, #1a5dd1);
+        position: relative;
+      }
+
+      .app-logo::before {
+        content: "";
+        position: absolute;
+        inset: 8px 6px 10px 6px;
+        background: white;
+        border-radius: 6px;
+      }
+
+      .app-logo::after {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 11px;
+        width: 15px;
+        height: 9px;
+        border: 2px solid #1d62d7;
+        border-top: none;
+        transform: skewY(-11deg);
+      }
+
+      .search {
+        flex: 1;
+        max-width: 360px;
+        height: 38px;
+        border-radius: 19px;
+        background: #f2f6fb;
+        border: 1px solid #d7deea;
+        display: flex;
+        align-items: center;
+        padding: 0 18px;
+        color: #708197;
+        font-size: 14px;
+      }
+
+      .window-body {
+        display: grid;
+        grid-template-columns: 208px 344px 1fr;
+        height: calc(100% - 62px);
+      }
+
+      .sidebar {
+        padding: 20px 16px;
+        background: #f5f8fc;
+        border-right: 1px solid var(--line);
+      }
+
+      .compose {
+        width: 100%;
+        height: 42px;
+        border-radius: 12px;
+        background: var(--accent);
+        color: white;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .nav-item {
+        padding: 10px 12px;
+        border-radius: 10px;
+        color: #42546b;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .nav-item.active {
+        background: #e8f1ff;
+        color: #1847a7;
+        font-weight: 700;
+      }
+
+      .mail-list {
+        border-right: 1px solid var(--line);
+        background: white;
+        padding: 14px 0;
+      }
+
+      .mail-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 18px 12px;
+        font-weight: 700;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .message-row {
+        padding: 14px 18px;
+        border-bottom: 1px solid #eef2f7;
+      }
+
+      .message-row.highlight {
+        background: var(--mail-unread);
+      }
+
+      .message-from {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .message-subject {
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .message-preview,
+      .message-time {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .reading-pane {
+        background: #fbfcfe;
+        padding: 24px 26px;
+      }
+
+      .empty-state,
+      .message-open {
+        height: 100%;
+        border-radius: 14px;
+        border: 1px solid #dde5ef;
+        background: white;
+      }
+
+      .empty-state {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        color: #667789;
+      }
+
+      .empty-state .big-mail {
+        width: 84px;
+        height: 84px;
+        border-radius: 24px;
+        background: linear-gradient(160deg, #eff5ff, #dce9ff);
+        position: relative;
+      }
+
+      .empty-state .big-mail::before {
+        content: "";
+        position: absolute;
+        inset: 23px 18px 28px 18px;
+        border-radius: 10px;
+        background: white;
+        border: 2px solid #8fb5ff;
+      }
+
+      .message-open {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .message-meta {
+        padding: 20px 24px 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .message-title {
+        font-size: 27px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        gap: 6px 14px;
+        font-size: 14px;
+      }
+
+      .meta-grid .label {
+        color: var(--muted);
+      }
+
+      .message-content {
+        padding: 20px 24px 24px;
+        overflow: hidden;
+      }
+
+      .intro {
+        font-size: 14px;
+        line-height: 1.55;
+        margin: 0 0 16px;
+        color: #37475a;
+      }
+
+      .attachment-card {
+        border: 1px solid #d5ddeb;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #f8fbff;
+      }
+
+      .attachment-toolbar {
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        background: white;
+        border-bottom: 1px solid #dfe7f2;
+        font-size: 13px;
+      }
+
+      .attachment-preview {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 16px;
+        height: 430px;
+        background: linear-gradient(180deg, #edf3fa, #d9e5f3);
+      }
+
+      .attachment-preview img {
+        width: 280px;
+        border-radius: 8px;
+        box-shadow: 0 18px 30px rgba(17, 41, 77, 0.25);
+        background: white;
+      }
+
+      .cursor {
+        position: absolute;
+        width: 22px;
+        height: 32px;
+        z-index: 20;
+        filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.35));
+      }
+
+      .cursor::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 26px solid white;
+        transform: rotate(-36deg);
+        left: 1px;
+        top: 1px;
+      }
+
+      .cursor::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 23px solid #1b1f27;
+        transform: rotate(-36deg);
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+
+      body[data-state="desktop"] .mail-window {
+        opacity: 0;
+      }
+
+      body[data-state="desktop"] .cursor {
+        left: 672px;
+        top: 688px;
+      }
+
+      body[data-state="desktop"] .taskbar-icon.mail {
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18) inset;
+      }
+
+      body[data-state="inbox"] .mail-window,
+      body[data-state="open"] .mail-window,
+      body[data-state="focus"] .mail-window {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      body[data-state="inbox"] .cursor {
+        left: 482px;
+        top: 219px;
+      }
+
+      body[data-state="open"] .cursor {
+        left: 482px;
+        top: 220px;
+      }
+
+      body[data-state="focus"] .cursor {
+        left: 973px;
+        top: 338px;
+      }
+
+      body[data-state="desktop"] .mail-list,
+      body[data-state="desktop"] .sidebar,
+      body[data-state="desktop"] .reading-pane {
+        visibility: hidden;
+      }
+
+      body[data-state="inbox"] .message-open,
+      body[data-state="desktop"] .message-open {
+        display: none;
+      }
+
+      body[data-state="open"] .empty-state,
+      body[data-state="focus"] .empty-state {
+        display: none;
+      }
+
+      body[data-state="focus"] .attachment-preview img {
+        width: 340px;
+      }
+    </style>
+  </head>
+  <body data-state="desktop">
+    <div class="screen">
+      <div class="desktop-header">Mi PC &nbsp;&nbsp; Documentos &nbsp;&nbsp; Descargas</div>
+
+      <div class="desktop-icon">
+        <div class="icon-art">
+          <div class="badge">1</div>
+        </div>
+        Correo
+      </div>
+
+      <div class="mail-window">
+        <div class="appbar">
+          <div class="app-logo"></div>
+          <div style="font-weight:700;">Correo</div>
+          <div class="search">Buscar en el correo</div>
+        </div>
+
+        <div class="window-body">
+          <aside class="sidebar">
+            <div class="compose">Nuevo mensaje</div>
+            <div class="nav-item active">Bandeja de entrada</div>
+            <div class="nav-item">Destacados</div>
+            <div class="nav-item">Enviados</div>
+            <div class="nav-item">Borradores</div>
+            <div class="nav-item">Archivo</div>
+          </aside>
+
+          <section class="mail-list">
+            <div class="mail-list-header">
+              <span>Inbox</span>
+              <span style="color:#708197;font-size:12px;">3 mensajes</span>
+            </div>
+
+            <div class="message-row highlight">
+              <div class="message-from">Mesa Judicial</div>
+              <div class="message-subject">Reporte diario de expedientes judiciales</div>
+              <div class="message-preview">Se adjunta el reporte y una vista previa de las novedades del día.</div>
+              <div class="message-time">08:42</div>
+            </div>
+
+            <div class="message-row">
+              <div class="message-from">Equipo Legal</div>
+              <div class="message-subject">Reunión semanal</div>
+              <div class="message-preview">Agenda y pendientes de la semana.</div>
+              <div class="message-time">Ayer</div>
+            </div>
+
+            <div class="message-row">
+              <div class="message-from">Notificaciones</div>
+              <div class="message-subject">Actualización del sistema</div>
+              <div class="message-preview">La plataforma estará en mantenimiento programado.</div>
+              <div class="message-time">Ayer</div>
+            </div>
+          </section>
+
+          <section class="reading-pane">
+            <div class="empty-state">
+              <div class="big-mail"></div>
+              <div style="font-size:18px;font-weight:700;">Seleccioná un mensaje</div>
+              <div style="font-size:14px;">Abrí el correo destacado para ver el reporte.</div>
+            </div>
+
+            <div class="message-open">
+              <div class="message-meta">
+                <div class="message-title">Reporte diario de expedientes judiciales</div>
+                <div class="meta-grid">
+                  <div class="label">De</div>
+                  <div>Mesa Judicial &lt;mesa-judicial@example.com&gt;</div>
+                  <div class="label">Para</div>
+                  <div>Equipo interno &lt;legal@example.com&gt;</div>
+                  <div class="label">Fecha</div>
+                  <div>21 abr 2026, 08:42</div>
+                </div>
+              </div>
+
+              <div class="message-content">
+                <p class="intro">
+                  Buen día, compartimos el resumen diario. Debajo se visualiza la imagen del reporte
+                  con las novedades judiciales destacadas.
+                </p>
+
+                <div class="attachment-card">
+                  <div class="attachment-toolbar">
+                    <span>Vista previa adjunta</span>
+                    <span style="color:#6d7c8d;">reporte-diario.png</span>
+                  </div>
+                  <div class="attachment-preview">
+                    <img src="./report-preview.svg" alt="Reporte diario" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="taskbar">
+        <div class="taskbar-icons">
+          <div class="taskbar-icon"></div>
+          <div class="taskbar-icon"></div>
+          <div class="taskbar-icon mail"><div class="badge" style="right:-6px;top:-6px;">1</div></div>
+          <div class="taskbar-icon"></div>
+          <div class="taskbar-icon"></div>
+        </div>
+        <div class="taskbar-clock">08:42<br />21/04/2026</div>
+      </div>
+
+      <div class="cursor"></div>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const state = params.get("state") || "desktop";
+      document.body.dataset.state = state;
+    </script>
+  </body>
+  </html>
